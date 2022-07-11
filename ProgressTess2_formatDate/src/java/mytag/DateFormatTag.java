@@ -4,12 +4,11 @@
  */
 package mytag;
 
-import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.tagext.JspFragment;
 import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -17,16 +16,18 @@ import java.util.Date;
  * @author fpt
  */
 public class DateFormatTag extends SimpleTagSupport {
-    	private String format;
-	private String number;
-        
-	public void setFormat(String format) {
-		this.format = format;
-	}
 
-	public void setNumber(String number) {
-		this.number = number;
-	}
+    private String format;
+    private String number;
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     /**
      * Called by the container to invoke this tag. The implementation of this
      * method is provided by the tag library developer, and handles all tag
@@ -34,15 +35,22 @@ public class DateFormatTag extends SimpleTagSupport {
      */
     @Override
     public void doTag() throws JspException, IOException {
-        
+
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-            SimpleDateFormat outputDateFormat = new SimpleDateFormat("ddMMyyyy");
+//            SimpleDateFormat outputDateFormat = new SimpleDateFormat("ddMMyyyy");
             Date date = dateFormat.parse(number);
-            System.out.println(outputDateFormat.format(date));
+            System.out.println(date);
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            int year = cal.get(Calendar.YEAR);
+            int month = cal.get(Calendar.MONTH) + 1;
+            int day = cal.get(Calendar.DAY_OF_MONTH);
+            getJspContext().getOut().write("Ngay " + day + " thang " + month + " nam " + year + "\n");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
+
 }

@@ -11,7 +11,7 @@
     </session-config>
     <jsp-config>
         <taglib>
-            <taglib-uri>https://your.uri/jsp/tlds/mytags</taglib-uri>
+            <taglib-uri>https://your.uri/jsp/tlds/format</taglib-uri>
             <taglib-location>/WEB-INF/tlds/DateFormatTag.tld</taglib-location>
         </taglib>
     </jsp-config>
