@@ -40,7 +40,7 @@ public class DateFormatTag extends SimpleTagSupport {
             SimpleDateFormat dateFormat = new SimpleDateFormat(format);
 //            SimpleDateFormat outputDateFormat = new SimpleDateFormat("ddMMyyyy");
             Date date = dateFormat.parse(number);
-            System.out.println(date);
+//            System.out.println(date);
 
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
